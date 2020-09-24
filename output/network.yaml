@@ -1,0 +1,12 @@
+spec:
+  selector:
+    app: core
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8080
+    nodePort: 30080
+kind: Service
+apiVersion: v1
+metadata:
+  name: core-svc

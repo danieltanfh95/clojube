@@ -1,0 +1,8 @@
+{:name "core"
+ :dev  {:image   "nginx"
+        :ports   [8001, {:from 8080
+                         :to   30080}]
+        :volumes [{:path      "/var/www/html"
+                   :host-path "/html"
+                   :mode      :rw}]}
+ :prod :dev}

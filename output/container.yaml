@@ -1,0 +1,8 @@
+volumeMounts:
+- name: core-58a68083-data
+  mountPath: /var/www/html
+name: corename
+ports:
+- containerPort: 8001
+- containerPort: 8080
+image: nginx

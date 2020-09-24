@@ -1,0 +1,28 @@
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /html
+  accessModes:
+  - ReadWriteMany
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  labels:
+    type: local
+  name: core-58a68083-data-pv
+
+---
+
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: core-58a68083-data-pvc
