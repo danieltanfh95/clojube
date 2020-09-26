@@ -8,9 +8,6 @@
 (def k8s-read-write-mode-map {:rw "ReadWriteMany"
                               :ro "ReadOnlyMany"})
 
-(def k8s-app-type-map {:per-machine 1
-                       :anywhere    2})
-
 (defn uuid [] (subs (str (java.util.UUID/randomUUID)) 0 8))
 
 (defn merge-yaml [yamls] (cljstr/join "\n---\n\n" yamls))
@@ -34,7 +31,7 @@
                                       :accessModes      access-mode
                                       :hostPath         {:path local-path}}}
                         {:apiVersion "v1"
-                         :kind       "PersistentVolume"
+                         :kind       "PersistentVolumeClaim"
                          :metadata   {:name pvc}
                          :spec       {:storageClassName "manual"
                                       :accessModes      access-mode
@@ -63,10 +60,38 @@
             :volumeMounts (map (fn [{:keys [ctnr-path key]}] {:mountPath ctnr-path
                                                               :name      (:name key)}) volumes)}))
 
-(def app (first *input*))
+(defn generate-deployment [name replica-number volumes container]
+      (let [dep (str name "-deployment")]
+           {:apiVersion "apps/v1"
+            :kind       "Deployment"
+            :metadata   {:name   dep
+                         :labels {:app dep}}
+            :spec       {:replicas replica-number
+                         :selector {:matchLabels {:app name}}
+                         :template {:metadata {:labels {:app name}}
+                                    :spec     {:imagePullSecrets [{:name "gitlab-registry-key"}]
+                                               :volumes          volumes
+                                               :containers       [container]}}}}))
 
+(defn generate-daemonset [name replica-number volumes container]
+      (let [dep (str name "-daemonset")]
+           {:apiVersion "apps/v1"
+            :kind       "Daemonset"
+            :metadata   {:name   dep
+                         :labels {:app dep}}
+            :spec       {:selector {:matchLabels {:app name}}
+                         :template {:metadata {:labels {:app name}}
+                                    :spec     {:imagePullSecrets [{:name "gitlab-registry-key"}]
+                                               :volumes          volumes
+                                               :containers       [container]}}}}))
 
+(def k8s-app-type-map {:per-machine generate-daemonset
+                       :anywhere    generate-deployment})
 
+(defn generate-app [name deployment generated-volumes container]
+      (let [generator (k8s-app-type-map (:type deployment))
+            number (:number deployment)]
+           (generator name number (map :key generated-volumes) container)))
 
 (defn keys-in
       "Returns a sequence of all key paths in a given map using DFS walk."
@@ -83,12 +108,13 @@
 
 (defn generate-k8s-config [env-config name]
       (let [generated-volumes (map (fn [{:keys [path host-path mode]}]
-                                       (generate-local-volume name path host-path mode)) (:volumes env-config))]
+                                       (generate-local-volume name path host-path mode)) (:volumes env-config))
+            generated-container (generate-container "core"
+                                                    (:image env-config)
+                                                    (:ports env-config)
+                                                    generated-volumes)]
            (->> [(map :value generated-volumes)
-                 (generate-container "core"
-                                     (:image env-config)
-                                     (:ports env-config)
-                                     generated-volumes)
+                 (generate-app name (:deployment env-config) generated-volumes generated-container)
                  (generate-service name (:ports env-config))]
                 (flatten)
                 (map generate-yaml)
@@ -115,4 +141,4 @@
                         (spit (str "output/" name "-" (symbol env-key) ".yaml") env-yaml))
                  )))
 
-(process-app-config app)
+(process-app-config (first *input*))

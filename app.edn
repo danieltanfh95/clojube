@@ -1,8 +1,14 @@
-{:name "core"
- :dev  {:image   "nginx"
-        :ports   [8001, {:from 8080
-                         :to   30080}]
-        :volumes [{:path      "/var/www/html"
-                   :host-path "/html"
-                   :mode      :rw}]}
- :prod :dev}
+{:name       "core"
+ :develop    {:image      "nginx:1.19"
+              :ports      [8001, {:from 8080
+                                  :to   30080}]
+              :volumes    [{:path      "/var/www/html"
+                            :host-path "/html"
+                            :mode      :rw}]
+              :deployment {:type   :anywhere
+                           :number 1}}
+ :production {:image      "nginx:1.18"
+              :ports      :develop
+              :volumes    :develop
+              :deployment {:type   :develop
+                           :number 2}}}

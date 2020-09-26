@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d4cd5a20-37a9-48d6-9a4f-5becb7a980d6" name="Default Changelist" comment="" />
+    <list default="true" id="d4cd5a20-37a9-48d6-9a4f-5becb7a980d6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.edn" beforeDir="false" afterPath="$PROJECT_DIR$/app.edn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/container.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/network.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/volumes.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.clj" beforeDir="false" afterPath="$PROJECT_DIR$/app.clj" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Clojure Namespace" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="ykubernetes" />
@@ -25,8 +43,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunManager">
@@ -62,6 +84,8 @@
       <updated>1600869576120</updated>
       <workItem from="1600869579406" duration="72000" />
       <workItem from="1600934219595" duration="8572000" />
+      <workItem from="1601029255525" duration="4728000" />
+      <workItem from="1601098608265" duration="8444000" />
     </task>
     <servers />
   </component>
@@ -69,13 +93,15 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="245" y="-911" key="SettingsEditor" timestamp="1600934637778">
-      <screen x="-224" y="-1057" width="1920" height="1015" />
+    <state x="352" y="23" width="1024" height="835" key="SettingsEditor" timestamp="1601112027305">
+      <screen x="0" y="23" width="1440" height="835" />
     </state>
+    <state x="352" y="23" width="1024" height="835" key="SettingsEditor/0.23.1440.835@0.23.1440.835" timestamp="1601112027305" />
     <state x="245" y="-911" key="SettingsEditor/0.23.1440.877/-224.-1057.1920.1015@-224.-1057.1920.1015" timestamp="1600934637778" />
-    <state x="345" y="-833" key="search.everywhere.popup" timestamp="1600934602479">
-      <screen x="-224" y="-1057" width="1920" height="1015" />
+    <state x="427" y="207" width="781" height="676" key="search.everywhere.popup" timestamp="1601099371671">
+      <screen x="0" y="23" width="1440" height="835" />
     </state>
+    <state x="427" y="207" width="781" height="676" key="search.everywhere.popup/0.23.1440.835@0.23.1440.835" timestamp="1601099371671" />
     <state x="345" y="-833" key="search.everywhere.popup/0.23.1440.877/-224.-1057.1920.1015@-224.-1057.1920.1015" timestamp="1600934602479" />
   </component>
 </project>

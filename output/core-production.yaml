@@ -1,0 +1,77 @@
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /html
+  accessModes:
+  - ReadWriteMany
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  labels:
+    type: local
+  name: core-1a7ccc2e-data-pv
+
+---
+
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: core-1a7ccc2e-data-pvc
+
+---
+
+spec:
+  selector:
+    matchLabels:
+      app: core
+  template:
+    spec:
+      imagePullSecrets:
+      - name: gitlab-registry-key
+      containers:
+      - volumeMounts:
+        - name: core-1a7ccc2e-data
+          mountPath: /var/www/html
+        name: corename
+        ports:
+        - containerPort: 8001
+        - containerPort: 8080
+        image: nginx:1.18
+      volumes:
+      - name: core-1a7ccc2e-data
+        persistentVolumeClaim:
+          claimName: core-1a7ccc2e-data-pvc
+    metadata:
+      labels:
+        app: core
+  replicas: 2
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: core-deployment
+  name: core-deployment
+
+---
+
+spec:
+  selector:
+    app: core
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8080
+    nodePort: 30080
+kind: Service
+apiVersion: v1
+metadata:
+  name: core-svc
