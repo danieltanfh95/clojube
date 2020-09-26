@@ -5,6 +5,12 @@
 (require '[clojure.edn :as edn])
 (require '[clojure.java.shell :as shell])
 
+(def k8s-read-write-mode-map {:rw "ReadWriteMany"
+                              :ro "ReadOnlyMany"})
+
+(def k8s-app-type-map {:per-machine 1
+                       :anywhere    2})
+
 (defn uuid [] (subs (str (java.util.UUID/randomUUID)) 0 8))
 
 (defn merge-yaml [yamls] (cljstr/join "\n---\n\n" yamls))
@@ -15,9 +21,7 @@
       (let [v (str name "-" (uuid) "-data")
             pv (str v "-pv")
             pvc (str pv "c")
-            access-mode [({:rw  "ReadWriteMany"
-                           :rwo "ReadWriteOnce"
-                           :ro  "ReadOnlyMany"} mode)]]
+            access-mode [(k8s-read-write-mode-map mode)]]
            {:key       {:name                  v
                         :persistentVolumeClaim {:claimName pvc}}
             :ctnr-path ctnr-path
@@ -62,18 +66,53 @@
 (def app (first *input*))
 
 
-(shell/sh "mkdir" "-p" "output")
-; network
-(spit "output/network.yaml" (generate-yaml (generate-service (:name app) (:ports (:dev app)))))
-; volumes
-(def generated-volumes (map (fn [{:keys [path host-path mode]}]
-                                (generate-local-volume (:name app) path host-path mode)) (:volumes (:dev app))))
-(spit "output/volumes.yaml" (->> generated-volumes
-                                 (map :value)
-                                 (flatten)
-                                 (map generate-yaml)
-                                 (merge-yaml)))
-(spit "output/container.yaml" (generate-yaml (generate-container "core"
-                                                                 (:image (:dev app))
-                                                                 (:ports (:dev app))
-                                                                 generated-volumes)))
+
+
+(defn keys-in
+      "Returns a sequence of all key paths in a given map using DFS walk."
+      [m]
+      (letfn [(children [node]
+                        (let [v (get-in m node)]
+                             (if (map? v)
+                               (map (fn [x] (conj node x)) (keys v))
+                               [])))
+              (branch? [node] (-> (children node) seq boolean))]
+             (->> (keys m)
+                  (map vector)
+                  (mapcat #(tree-seq branch? children %)))))
+
+(defn generate-k8s-config [env-config name]
+      (let [generated-volumes (map (fn [{:keys [path host-path mode]}]
+                                       (generate-local-volume name path host-path mode)) (:volumes env-config))]
+           (->> [(map :value generated-volumes)
+                 (generate-container "core"
+                                     (:image env-config)
+                                     (:ports env-config)
+                                     generated-volumes)
+                 (generate-service name (:ports env-config))]
+                (flatten)
+                (map generate-yaml)
+                (merge-yaml))))
+
+(defn process-app-config [app]
+      (shell/sh "mkdir" "-p" "output")
+      (let [name (:name app)
+            env-configs (dissoc app :name)
+            envs (keys env-configs)]
+           (as-> env-configs app
+                 (loop [app app
+                        keys (reverse (sort-by count (keys-in app)))]
+                       (if-not (empty? keys)
+                               (recur (let [path (first keys)
+                                            value (get-in app path)]
+                                           (if (some #(= % value) envs)
+                                             (assoc-in app path (get-in app (into [value] (rest path))))
+                                             app))
+                                      (rest keys))
+                               app))
+                 (map (fn [[env-key env-config]] [env-key (generate-k8s-config env-config name)]) app)
+                 (doseq [[env-key env-yaml] app]
+                        (spit (str "output/" name "-" (symbol env-key) ".yaml") env-yaml))
+                 )))
+
+(process-app-config app)
