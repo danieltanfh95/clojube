@@ -122,12 +122,11 @@
                 (merge-yaml)
                 (str "#auto-generated YAML files by clojube\n\n"))))
 
-(defn process-app-config [app]
+(defn process-app-config [app parent-path]
       (let [name (:name app)
             output-folder (:output-folder app)
             env-configs (-> app (dissoc :name) (dissoc :output-folder))
             envs (keys env-configs)]
-           (shell/sh "mkdir" "-p" output-folder)
            (as-> env-configs app
                  (loop [app app
                         keys (reverse (sort-by count (keys-in app)))]
@@ -141,11 +140,12 @@
                                app))
                  (map (fn [[env-key env-config]] [env-key (generate-k8s-config env-config (str name "-" (symbol env-key)))]) app)
                  (doseq [[env-key env-yaml] app]
-                        (spit (->> (str name "-" (symbol env-key) ".yaml")
-                                   (io/file output-folder)
-                                   (.getCanonicalFile)
-                                   (.toString))
-                              env-yaml))
+                        (let [file-path (->> (str name "-" (symbol env-key) ".yaml")
+                                             (io/file parent-path output-folder)
+                                             (.getCanonicalFile)
+                                             (.toString))]
+                             (shell/sh "mkdir" "-p" (-> (io/file parent-path output-folder) (.toString)))
+                             (spit file-path env-yaml)))
                  (println (str "The files are created in the \"" output-folder "\" folder")))))
 
 
@@ -153,7 +153,10 @@
      (when (empty? config-edn)
            (println "please provide a valid edn file like `./clojube.clj config.edn`, and do note that `gitlab-registry-key` must be available in your cluster")
            (System/exit 1))
-     (-> config-edn
-         (slurp)
-         (edn/read-string)
-         (process-app-config)))
+     (let [parent-path (-> (io/file config-edn)
+                           (.getParent)
+                           (.toString))]
+          (-> config-edn
+              (slurp)
+              (edn/read-string)
+              (process-app-config parent-path))))

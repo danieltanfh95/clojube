@@ -36,7 +36,9 @@ this should be on your path
 
 ## Usage
 
-You need to provide some edn file. An edn file is basically similar to JSON, but is far easier to read.
+`clojube.clj config.edn`
+
+You need to provide config.edn, which is some edn file. An edn file is basically similar to JSON, but is far easier to read.
 
 The edn file must include a name, output folder and environments. Example valid EDN:
 ```edn
@@ -53,4 +55,9 @@ The edn file must include a name, output folder and environments. Example valid 
                               :number 1}}
 ```
 
-`:name` and `:output-folder` must be present. Anything else will be assumed to be environments.
+### Top level required keys
+`:name` : the name of the app
+
+`:output-folder` : this is the output folder relative to the config.edn location
+
+### Environment required keys
