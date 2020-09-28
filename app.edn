@@ -10,5 +10,4 @@
  :production {:image      "nginx:1.18"
               :ports      :develop
               :volumes    :develop
-              :deployment {:type   :develop
-                           :number 2}}}
+              :deployment :develop}}

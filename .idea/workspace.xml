@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4cd5a20-37a9-48d6-9a4f-5becb7a980d6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.clj" beforeDir="false" afterPath="$PROJECT_DIR$/app.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.edn" beforeDir="false" afterPath="$PROJECT_DIR$/app.edn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/container.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/network.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/volumes.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.clj" beforeDir="false" afterPath="$PROJECT_DIR$/app.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/core-develop.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/output/core-develop.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/core-production.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/output/core-production.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

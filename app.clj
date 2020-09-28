@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env bb -I
 
 (require '[clj-yaml.core :as yaml])
 (require '[clojure.string :as cljstr])

@@ -11,7 +11,7 @@ apiVersion: v1
 metadata:
   labels:
     type: local
-  name: core-1a7ccc2e-data-pv
+  name: core-7dcdefc7-data-pv
 
 ---
 
@@ -25,7 +25,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: core-1a7ccc2e-data-pvc
+  name: core-7dcdefc7-data-pvc
 
 ---
 
@@ -39,7 +39,7 @@ spec:
       - name: gitlab-registry-key
       containers:
       - volumeMounts:
-        - name: core-1a7ccc2e-data
+        - name: core-7dcdefc7-data
           mountPath: /var/www/html
         name: corename
         ports:
@@ -47,13 +47,13 @@ spec:
         - containerPort: 8080
         image: nginx:1.18
       volumes:
-      - name: core-1a7ccc2e-data
+      - name: core-7dcdefc7-data
         persistentVolumeClaim:
-          claimName: core-1a7ccc2e-data-pvc
+          claimName: core-7dcdefc7-data-pvc
     metadata:
       labels:
         app: core
-  replicas: 2
+  replicas: 1
 kind: Deployment
 apiVersion: apps/v1
 metadata:
