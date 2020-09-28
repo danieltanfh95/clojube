@@ -1,8 +1,8 @@
 # Clojube examples
 
-The file is meant to be used this way.
+This will generate the files in the `output` folder
 
 ```
 cd examples
-clojube.clj app.edn
+clojube.clj config.edn
 ```
