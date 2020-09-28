@@ -45,7 +45,6 @@ spec:
           mountPath: /var/www/html
         name: core-develop
         ports:
-        - containerPort: 8001
         - containerPort: 8080
         image: nginx:1.19
       volumes:

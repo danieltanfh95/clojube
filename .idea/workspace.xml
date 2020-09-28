@@ -4,10 +4,7 @@
     <list default="true" id="d4cd5a20-37a9-48d6-9a4f-5becb7a980d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clojube.clj" beforeDir="false" afterPath="$PROJECT_DIR$/clojube.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/container.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/app.edn" beforeDir="false" afterPath="$PROJECT_DIR$/examples/config.edn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/config.edn" beforeDir="false" afterPath="$PROJECT_DIR$/examples/config.edn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,8 +1,8 @@
 {:name          "core"
  :output-folder "output"
  :develop       {:image      "nginx:1.19"
-                 :ports      [8001, {:from 8080
-                                     :to   30080}]
+                 :ports      [{:from 8080
+                               :to   30080}]
                  :volumes    [{:path      "/var/www/html"
                                :host-path "/html"
                                :mode      :rw
