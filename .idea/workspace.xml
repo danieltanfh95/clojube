@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4cd5a20-37a9-48d6-9a4f-5becb7a980d6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/output/core-staging.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.clj" beforeDir="false" afterPath="$PROJECT_DIR$/clojube.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.edn" beforeDir="false" afterPath="$PROJECT_DIR$/examples/app.edn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/core-develop.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/output/core-develop.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/core-production.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/output/core-production.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clojube.clj" beforeDir="false" afterPath="$PROJECT_DIR$/clojube.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/examples/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/app.edn" beforeDir="false" afterPath="$PROJECT_DIR$/examples/app.edn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/output/core-develop.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/output/core-develop.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/output/core-production.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/output/core-production.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +95,7 @@
       <workItem from="1600934219595" duration="8572000" />
       <workItem from="1601029255525" duration="4728000" />
       <workItem from="1601098608265" duration="8444000" />
-      <workItem from="1601267773573" duration="5730000" />
+      <workItem from="1601267773573" duration="9824000" />
     </task>
     <servers />
   </component>
@@ -107,10 +108,10 @@
     </state>
     <state x="352" y="23" width="1024" height="835" key="SettingsEditor/0.23.1440.835@0.23.1440.835" timestamp="1601112027305" />
     <state x="245" y="-911" key="SettingsEditor/0.23.1440.877/-224.-1057.1920.1015@-224.-1057.1920.1015" timestamp="1600934637778" />
-    <state x="427" y="207" width="781" height="676" key="search.everywhere.popup" timestamp="1601099371671">
+    <state x="427" y="207" width="781" height="676" key="search.everywhere.popup" timestamp="1601277631212">
       <screen x="0" y="23" width="1440" height="835" />
     </state>
-    <state x="427" y="207" width="781" height="676" key="search.everywhere.popup/0.23.1440.835@0.23.1440.835" timestamp="1601099371671" />
+    <state x="427" y="207" width="781" height="676" key="search.everywhere.popup/0.23.1440.835@0.23.1440.835" timestamp="1601277631212" />
     <state x="345" y="-833" key="search.everywhere.popup/0.23.1440.877/-224.-1057.1920.1015@-224.-1057.1920.1015" timestamp="1600934602479" />
   </component>
 </project>

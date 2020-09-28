@@ -11,7 +11,7 @@ apiVersion: v1
 metadata:
   labels:
     type: local
-  name: core-develop-webroot-data-pv
+  name: core-staging-webroot-data-pv
 
 ---
 
@@ -25,47 +25,47 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: core-develop-webroot-data-pvc
+  name: core-staging-webroot-data-pvc
 
 ---
 
 spec:
   selector:
     matchLabels:
-      app: core-develop
+      app: core-staging
   template:
     spec:
       imagePullSecrets:
       - name: gitlab-registry-key
       containers:
       - volumeMounts:
-        - name: core-develop-webroot-data
+        - name: core-staging-webroot-data
           mountPath: /var/www/html
-        name: core-develop
+        name: core-staging
         ports:
         - containerPort: 8001
         - containerPort: 8080
-        image: nginx:1.19
+        image: nginx:1.18
       volumes:
-      - name: core-develop-webroot-data
+      - name: core-staging-webroot-data
         persistentVolumeClaim:
-          claimName: core-develop-webroot-data-pvc
+          claimName: core-staging-webroot-data-pvc
     metadata:
       labels:
-        app: core-develop
-  replicas: 1
+        app: core-staging
+  replicas: 2
 kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    app: core-develop
-  name: core-develop-deployment
+    app: core-staging
+  name: core-staging-deployment
 
 ---
 
 spec:
   selector:
-    app: core-develop
+    app: core-staging
   type: NodePort
   ports:
   - protocol: TCP
@@ -74,4 +74,4 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: core-develop-service
+  name: core-staging-service

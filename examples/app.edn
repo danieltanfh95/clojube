@@ -12,4 +12,6 @@
  :production    {:image      "nginx:1.18"
                  :ports      :develop
                  :volumes    :develop
-                 :deployment :develop}}
+                 :deployment {:type   :anywhere
+                              :number 2}}
+ :staging       :production}

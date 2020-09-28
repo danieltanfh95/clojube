@@ -1,7 +1,7 @@
 spec:
   storageClassName: manual
   capacity:
-    storage: 1Gi
+    storage: 10Gi
   hostPath:
     path: /html
   accessModes:
@@ -11,7 +11,7 @@ apiVersion: v1
 metadata:
   labels:
     type: local
-  name: core-webroot-data-pv
+  name: core-production-webroot-data-pv
 
 ---
 
@@ -21,51 +21,51 @@ spec:
   - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: core-webroot-data-pvc
+  name: core-production-webroot-data-pvc
 
 ---
 
 spec:
   selector:
     matchLabels:
-      app: core
+      app: core-production
   template:
     spec:
       imagePullSecrets:
       - name: gitlab-registry-key
       containers:
       - volumeMounts:
-        - name: core-webroot-data
+        - name: core-production-webroot-data
           mountPath: /var/www/html
-        name: corename
+        name: core-production
         ports:
         - containerPort: 8001
         - containerPort: 8080
         image: nginx:1.18
       volumes:
-      - name: core-webroot-data
+      - name: core-production-webroot-data
         persistentVolumeClaim:
-          claimName: core-webroot-data-pvc
+          claimName: core-production-webroot-data-pvc
     metadata:
       labels:
-        app: core
-  replicas: 1
+        app: core-production
+  replicas: 2
 kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    app: core-deployment
-  name: core-deployment
+    app: core-production
+  name: core-production-deployment
 
 ---
 
 spec:
   selector:
-    app: core
+    app: core-production
   type: NodePort
   ports:
   - protocol: TCP
@@ -74,4 +74,4 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: core-svc
+  name: core-production-service

@@ -1,4 +1,4 @@
-#!/usr/bin/env bb -I
+#!/usr/bin/env bb
 
 (require '[clj-yaml.core :as yaml]
          '[clojure.string :as cljstr]
@@ -16,7 +16,7 @@
 (defn generate-yaml [data] (yaml/generate-string data :dumper-options {:flow-style :block}))
 
 (defn generate-local-volume [name id ctnr-path local-path mode]
-      (let [v (str name "-" id "-data")
+      (let [v (str name (if (some? id) (str "-" id)) "-data")
             pv (str v "-pv")
             pvc (str pv "c")
             access-mode [(k8s-read-write-mode-map mode)]]
@@ -28,7 +28,7 @@
                          :metadata   {:name   pv
                                       :labels {:type "local"}}
                          :spec       {:storageClassName "manual"
-                                      :capacity         {:storage "1Gi"}
+                                      :capacity         {:storage "10Gi"}
                                       :accessModes      access-mode
                                       :hostPath         {:path local-path}}}
                         {:apiVersion "v1"
@@ -36,10 +36,10 @@
                          :metadata   {:name pvc}
                          :spec       {:storageClassName "manual"
                                       :accessModes      access-mode
-                                      :resources        {:requests {:storage "1Gi"}}}}]}))
+                                      :resources        {:requests {:storage "10Gi"}}}}]}))
 
 (defn generate-service [name ports]
-      (let [svc (str name "-svc")]
+      (let [svc (str name "-service")]
            {:apiVersion "v1"
             :kind       "Service"
             :metadata   {:name svc}
@@ -52,7 +52,7 @@
                                                                       :nodePort to})))}}))
 
 (defn generate-container [name image ports volumes]
-      (let [ctnr (str "corename")]
+      (let [ctnr name]
            {:name         ctnr
             :image        image
             :ports        (->> ports
@@ -66,7 +66,7 @@
            {:apiVersion "apps/v1"
             :kind       "Deployment"
             :metadata   {:name   dep
-                         :labels {:app dep}}
+                         :labels {:app name}}
             :spec       {:replicas replica-number
                          :selector {:matchLabels {:app name}}
                          :template {:metadata {:labels {:app name}}
@@ -110,7 +110,7 @@
 (defn generate-k8s-config [env-config name]
       (let [generated-volumes (map (fn [{:keys [path host-path mode id]}]
                                        (generate-local-volume name id path host-path mode)) (:volumes env-config))
-            generated-container (generate-container "core"
+            generated-container (generate-container name
                                                     (:image env-config)
                                                     (:ports env-config)
                                                     generated-volumes)]
@@ -138,7 +138,7 @@
                                              app))
                                       (rest keys))
                                app))
-                 (map (fn [[env-key env-config]] [env-key (generate-k8s-config env-config name)]) app)
+                 (map (fn [[env-key env-config]] [env-key (generate-k8s-config env-config (str name "-" (symbol env-key)))]) app)
                  (doseq [[env-key env-yaml] app]
                         (spit (->> (str name "-" (symbol env-key) ".yaml")
                                    (io/file output-folder)
@@ -147,7 +147,12 @@
                               env-yaml))
                  (println (str "The files are created in the \"" output-folder "\" folder")))))
 
-(def app (first *input*))
-(if (and (:name app) (:output-folder app))
-  (process-app-config app)
-  (println "please provide a valid edn file like `cat config.edn | ./clojube.clj`, and do note that `gitlab-registry-key` must be available in your cluster"))
+
+(let [[config-edn] *command-line-args*]
+     (when (empty? config-edn)
+           (println "please provide a valid edn file like `./clojube.clj config.edn`, and do note that `gitlab-registry-key` must be available in your cluster")
+           (System/exit 1))
+     (-> config-edn
+         (slurp)
+         (edn/read-string)
+         (process-app-config)))
