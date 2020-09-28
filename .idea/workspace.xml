@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4cd5a20-37a9-48d6-9a4f-5becb7a980d6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/Readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.clj" beforeDir="false" afterPath="$PROJECT_DIR$/app.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.edn" beforeDir="false" afterPath="$PROJECT_DIR$/app.edn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/core-develop.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/output/core-develop.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/core-production.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/output/core-production.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.clj" beforeDir="false" afterPath="$PROJECT_DIR$/clojube.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.edn" beforeDir="false" afterPath="$PROJECT_DIR$/examples/app.edn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/core-develop.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/output/core-develop.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/core-production.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/output/core-production.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +37,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1humuRAvkZJfdfNVNNbUiSy3pkY" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,6 +53,11 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
@@ -84,6 +94,7 @@
       <workItem from="1600934219595" duration="8572000" />
       <workItem from="1601029255525" duration="4728000" />
       <workItem from="1601098608265" duration="8444000" />
+      <workItem from="1601267773573" duration="5730000" />
     </task>
     <servers />
   </component>
