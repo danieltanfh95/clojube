@@ -1,3 +1,5 @@
+#auto-generated YAML files by clojube
+
 spec:
   storageClassName: manual
   capacity:

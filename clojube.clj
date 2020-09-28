@@ -119,7 +119,8 @@
                  (generate-service name (:ports env-config))]
                 (flatten)
                 (map generate-yaml)
-                (merge-yaml))))
+                (merge-yaml)
+                (str "#auto-generated YAML files by clojube\n\n"))))
 
 (defn process-app-config [app]
       (let [name (:name app)
