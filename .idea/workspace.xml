@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d4cd5a20-37a9-48d6-9a4f-5becb7a980d6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clojube.clj" beforeDir="false" afterPath="$PROJECT_DIR$/clojube.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/output/core-develop.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/output/core-develop.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/output/core-production.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/output/core-production.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/output/core-staging.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/output/core-staging.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="d4cd5a20-37a9-48d6-9a4f-5becb7a980d6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +86,7 @@
       <workItem from="1600934219595" duration="8572000" />
       <workItem from="1601029255525" duration="4728000" />
       <workItem from="1601098608265" duration="8444000" />
-      <workItem from="1601267773573" duration="10127000" />
+      <workItem from="1601267773573" duration="10589000" />
     </task>
     <servers />
   </component>
