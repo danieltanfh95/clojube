@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d4cd5a20-37a9-48d6-9a4f-5becb7a980d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/examples/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clojube.clj" beforeDir="false" afterPath="$PROJECT_DIR$/clojube.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/config.edn" beforeDir="false" afterPath="$PROJECT_DIR$/examples/config.edn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -90,6 +92,8 @@
       <workItem from="1601029255525" duration="4728000" />
       <workItem from="1601098608265" duration="8444000" />
       <workItem from="1601267773573" duration="10589000" />
+      <workItem from="1607068427585" duration="111000" />
+      <workItem from="1607068556714" duration="84000" />
     </task>
     <servers />
   </component>

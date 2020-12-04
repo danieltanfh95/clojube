@@ -47,9 +47,10 @@
                          :type     "NodePort"
                          :ports    (->> ports
                                         (filter map?)
-                                        (map (fn [{:keys [from to]}] {:protocol "TCP"
-                                                                      :port     from
-                                                                      :nodePort to})))}}))
+                                        (map (fn [{:keys [from to id]}] {:protocol "TCP"
+                                                                         :port     from
+                                                                         :nodePort to
+                                                                         :name     id})))}}))
 
 (defn generate-container [name image ports volumes]
       (let [ctnr name]

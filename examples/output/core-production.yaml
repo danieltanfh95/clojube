@@ -70,6 +70,7 @@ spec:
   type: NodePort
   ports:
   - protocol: TCP
+    name: main
     port: 8080
     nodePort: 30080
 kind: Service
