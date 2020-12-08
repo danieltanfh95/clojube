@@ -56,6 +56,7 @@
       (let [ctnr name]
            {:name         ctnr
             :image        image
+            :imagePullPolicy "Always"
             :ports        (->> ports
                                (map #(if (map? %) (:from %) %))
                                (map (fn [port] {:containerPort port})))

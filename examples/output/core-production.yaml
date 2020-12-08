@@ -46,6 +46,7 @@ spec:
         name: core-production
         ports:
         - containerPort: 8080
+        imagePullPolicy: Always
         image: nginx:1.18
       volumes:
       - name: core-production-webroot-data

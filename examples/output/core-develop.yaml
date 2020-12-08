@@ -46,6 +46,7 @@ spec:
         name: core-develop
         ports:
         - containerPort: 8080
+        imagePullPolicy: Always
         image: nginx:1.19
       volumes:
       - name: core-develop-webroot-data
